@@ -10,7 +10,7 @@ class JW_Members_Activator {
         $sql = "CREATE TABLE $table_name (
             id mediumint(9) NOT NULL AUTO_INCREMENT,
             user_id bigint(20) NOT NULL,
-            membership_level varchar(50) NOT NULL,
+            membership_id varchar(50) NOT NULL,
             subscription_status varchar(50) NOT NULL,
             created_at datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
             PRIMARY KEY  (id)
@@ -60,7 +60,7 @@ class JW_Members_Activator {
             foreach ($order->get_items() as $item) {
                 if (in_array($item->get_product_id(), $membership_product_ids)) {
                     $user_id = $order->get_user_id();
-                    $membership_level = 'default'; // Set appropriate membership level
+                    $membership_id = $item->get_product_id(); // Set appropriate membership level
                     $subscription_status = 'active'; // Set appropriate subscription status
                     $created_at = $order->get_date_created()->date('Y-m-d H:i:s');
 
